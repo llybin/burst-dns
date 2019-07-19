@@ -103,6 +103,8 @@ func (s *BurstDNS) Listen() {
 		}
 
 		if !isBurstTLD(m) {
+			// send empty response
+			go sendPacket(s.conn, *addr, m)
 			continue
 		}
 
