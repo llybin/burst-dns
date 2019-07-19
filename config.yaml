@@ -1,5 +1,6 @@
 dns:
-  port: 1053
+  port: 53
+  resolvconf: /etc/resolv.conf
 
 node:
   url: http://wallet.burst.devtrue.net:8125
