@@ -14,4 +14,4 @@ Open your wallet on any node, e.g.: https://wallet.burst.devtrue.net
 
 Supported types: a, aaaa
 
-Exmaple: `[{"type": "a", "data": "IP1", "ttl": 3600}, {"type": "a", "data": "IP2", "ttl": 7200}]`
+Example: `[{"type": "a", "data": "IP1", "ttl": 3600}, {"type": "a", "data": "IP2", "ttl": 7200}]`
