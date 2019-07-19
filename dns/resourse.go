@@ -11,7 +11,7 @@ var (
 	errUnknownType = errors.New("type unknown")
 )
 
-func ToResource(req request) (dnsmessage.Resource, error) {
+func toResource(req request) (dnsmessage.Resource, error) {
 	rName, err := dnsmessage.NewName(req.Host)
 	none := dnsmessage.Resource{}
 	if err != nil {
@@ -51,4 +51,15 @@ func ToResource(req request) (dnsmessage.Resource, error) {
 		},
 		Body: rBody,
 	}, nil
+}
+
+func dnsTypeToStr(dnsType dnsmessage.Type) string {
+	switch dnsType {
+	case dnsmessage.TypeA:
+		return "a"
+	case dnsmessage.TypeAAAA:
+		return "aaaa"
+	default:
+		return ""
+	}
 }

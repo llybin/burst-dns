@@ -50,6 +50,10 @@ func (s *BurstDNS) answer(addr net.UDPAddr, m dnsmessage.Message) {
 
 	if records, err := burst.GetRecords(aliasName); err == nil {
 		for _, record := range records {
+			// return only requested type
+			if record.Type != dnsTypeToStr(m.Questions[0].Type) {
+				continue
+			}
 			req := request{
 				Host: domain,
 				Type: record.Type,
@@ -57,7 +61,7 @@ func (s *BurstDNS) answer(addr net.UDPAddr, m dnsmessage.Message) {
 				TTL:  record.TTL,
 			}
 
-			res, err := ToResource(req)
+			res, err := toResource(req)
 			if err != nil {
 				log.Println(err)
 				continue
@@ -108,7 +112,7 @@ func (s *BurstDNS) Listen() {
 			continue
 		}
 
-		log.Printf("Got request %v, %v from: %s\n", m, m.Header, addr)
+		//log.Printf("Got request %v, %v from: %s\n", m, m.Header, addr)
 
 		go s.answer(*addr, m)
 	}

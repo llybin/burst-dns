@@ -23,7 +23,7 @@ type response struct {
 	Alias     string
 }
 
-var httpClient = &http.Client{Timeout: 5 * time.Second}
+var httpClient = &http.Client{Timeout: 10 * time.Second}
 
 func getJson(url string, target interface{}) error {
 	r, err := httpClient.Get(url)
